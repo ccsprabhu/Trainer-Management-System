@@ -23,6 +23,8 @@ import { ApplicationListComponent } from './application-list/application-list.co
 import { ApprovalformComponent } from './approvalform/approvalform.component';
 import { AllocationListComponent } from './allocation-list/allocation-list.component'
 import {DataTablesModule} from 'angular-datatables';
+import { AllocationformComponent } from './allocationform/allocationform.component';
+import { AllocatedlistComponent } from './allocatedlist/allocatedlist.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,9 @@ import {DataTablesModule} from 'angular-datatables';
          ProfileComponent,
          ApplicationListComponent,
          ApprovalformComponent,
-         AllocationListComponent
+         AllocationListComponent,
+         AllocationformComponent,
+         AllocatedlistComponent
    
   ],
   imports: [

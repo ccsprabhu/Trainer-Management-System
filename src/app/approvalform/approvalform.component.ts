@@ -39,7 +39,7 @@ export class ApprovalformComponent implements OnInit {
     // console.log("Called"); 
     console.log(this.trainerItem)   
     alert("Approved Successfully");
-    this.router.navigate(['/applicationlist']);
+    this.router.navigate(['/approvedlist']);
   }
   logoutUser()
   {

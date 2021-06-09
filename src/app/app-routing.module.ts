@@ -14,6 +14,8 @@ import {AdminGuard} from './admin.guard';
 import { ApplicationListComponent } from './application-list/application-list.component';
 import { ApprovalformComponent } from './approvalform/approvalform.component';
 import { AllocationListComponent } from './allocation-list/allocation-list.component';
+import { AllocationformComponent } from './allocationform/allocationform.component';
+import { AllocatedlistComponent } from './allocatedlist/allocatedlist.component';
 
 const routes: Routes = [{path:'',component:HomeComponent},
 {path:'signup',component:SignupComponent},
@@ -32,6 +34,8 @@ component:AdmindashboardComponent},
 {path:'applicationlist',canActivate:[AdminGuard],component:ApplicationListComponent},
 {path:'approvalform',canActivate:[AdminGuard],component:ApprovalformComponent},
 {path:'approvedlist',canActivate:[AdminGuard],component:AllocationListComponent},
+{path:'allocationform',canActivate:[AdminGuard],component:AllocationformComponent},
+{path:'allocatedlist',canActivate:[AdminGuard],component:AllocatedlistComponent},
 {path:'submitsuccess',component:SubmitsuccessComponent},
 {path:'calender',
 canActivate:[AuthGuard],

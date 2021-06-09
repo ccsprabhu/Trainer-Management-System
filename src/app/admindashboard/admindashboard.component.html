@@ -24,9 +24,9 @@
           <a routerLink="/approvedlist" *ngIf="_AdminService.loggedIn()"><span class="fa fa-trophy mr-3"></span>Approved List</a>
         </li>
   
-        <!-- <li>
-          <a routerLink="/Allocatedlist" *ngIf="_AdminService.loggedIn()"><span class="fa fa-support mr-3"></span>Allocated List</a>
-        </li> -->
+        <li>
+          <a routerLink="/allocatedlist" *ngIf="_AdminService.loggedIn()"><span class="fa fa-support mr-3"></span>Allocated List</a>
+        </li>
         <li>
           <a style="cursor:pointer" *ngIf="_AdminService.loggedIn()" (click)="logoutUser()"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
         </li>

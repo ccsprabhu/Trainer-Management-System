@@ -32,7 +32,7 @@ export class EnrollmentComponent implements OnInit {
   {   
     this.applicationlistService.newApplicationlist(this.applicationlist);
     console.log("Called");    
-    alert("Success");
+    alert("Enrolled Succesfully");
     this.router.navigate(['/submitsuccess']);
   }
   logoutUser()

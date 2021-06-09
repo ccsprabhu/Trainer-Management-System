@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://userone:userone@ictaktms.hjqbm.mongodb.net/TrainerManagement?retryWrites=true&w=majority',{ useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/tms',{ useNewUrlParser: true, useUnifiedTopology: true });
 const Schema = mongoose.Schema;
 
 const TrainerSchema = new Schema({

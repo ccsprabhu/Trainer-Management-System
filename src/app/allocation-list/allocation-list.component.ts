@@ -31,8 +31,18 @@ export class AllocationListComponent implements OnInit {
     this._ApprovalService.getApprovedlist().subscribe((data)=>{
       this.approvedlist=JSON.parse(JSON.stringify(data));
       console.log(this.approvedlist)
-    })
+    });
+    setTimeout(()=>{                       
+      $('#datatableexample').DataTable( {
+        pagingType: 'full_numbers',
+        pageLength: 5,
+        processing: true,
+        lengthMenu : [5, 10, 25],
+        order:[[1,"desc"]]
+    } );
+     }, 500);
   }
+  
   logoutUser()
   {
   localStorage.removeItem('token')
@@ -42,5 +52,13 @@ export class AllocationListComponent implements OnInit {
   {
     this.router.navigate(['/admindashboard'])
   }
-
+  single(approvedlist:any)
+    {
+      localStorage.setItem("alloid", approvedlist._id.toString());
+      //  console.log(applicationlist._id);
+      // const myData = localStorage.getItem("id");
+      // console.log(myData);
+      this.router.navigate(['/allocationform']);
+    }
+   
 }

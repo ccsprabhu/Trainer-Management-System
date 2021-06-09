@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://userone:userone@ictaktms.hjqbm.mongodb.net/TrainerManagement?retryWrites=true&w=majority',{ useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/tms',{ useNewUrlParser: true, useUnifiedTopology: true });
 const Schema = mongoose.Schema;
 const ApprovedSchema = new Schema({
   
@@ -15,5 +15,6 @@ const ApprovedSchema = new Schema({
     typemp:String
   
   });
-  const Approvedlist = mongoose.model('trainer', ApprovedSchema);
-  module.exports = Approvedlist;
+  var collectionName = 'trainerdatas'
+  const Trainerdata = mongoose.model('Trainerdata', ApprovedSchema,collectionName );
+  module.exports = Trainerdata;

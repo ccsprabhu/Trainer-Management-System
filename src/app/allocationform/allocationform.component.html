@@ -1,0 +1,184 @@
+<!-- <app-header></app-header> -->
+
+<div class="wrapper d-flex align-items-stretch">
+    
+    
+    <nav  id="sidebar">
+        <div class="custom-menu">
+         
+         
+        </div>
+        <div class="img bg-wrap text-center py-4" style="background-image: url(images/bg_1.jpg);">
+          <div class="user-logo">
+            <div class="img" style="background-image: url(images/logo.jpg);"></div>
+            <h3>Dashboard</h3>
+          </div>
+        </div>
+        <ul class="list-unstyled components mb-5">
+          <li><a routerLink="/admindashboard" *ngIf="_AdminService.loggedIn()" (click)="loggedUser()"><span class="fa fa-home mr-3"></span> Home</a>
+          </li>
+    
+          <li>
+            <a routerLink="/applicationlist">
+              <span class="fa fa-gift mr-3" *ngIf="_AdminService.loggedIn()"></span>Application List</a>
+          </li>
+          <li>
+            <a routerLink="/approvedlist" *ngIf="_AdminService.loggedIn()"><span class="fa fa-trophy mr-3"></span>Approved List</a>
+          </li>
+    
+          <li>
+            <a routerLink="/allocatedlist" *ngIf="_AdminService.loggedIn()"><span class="fa fa-support mr-3"></span>Allocated List</a>
+          </li>
+          <li>
+            <a style="cursor:pointer" *ngIf="_AdminService.loggedIn()" (click)="logoutUser()"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
+          </li>
+        </ul>
+    
+      </nav>
+    
+  
+    <!-- Page Content begins  -->
+    
+   
+   
+ 
+   <!-- Page Content begins  -->
+   
+   <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+     <button class='btn btn-secondary'
+     (click)='toggleImage()'>
+       {{showImage? '<' : '>'}} 
+     </button>
+     <div class="card card0 border-0">
+       <div class="row d-flex">
+ 
+        
+ 
+ 
+         <div class=" border-0 px-4 py-5" id="enroll">
+           <!-- card2 card -->
+           
+             <h1 class="login text-center">Allocation</h1>
+             <!--class="mb-0 mr-4 mt-2"-->
+
+ 
+             <br>
+             <!-- Enroll Form -->
+            
+             <form (ngSubmit)="allocate()">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+               <br>
+
+               <!-- <h3 class="mt-4 ml-5 mb-4" style="font-weight: bold;">Course Details</h3> -->
+               <div class="row px-5 inpbox"> <label class="mb-1">
+                <h6 class="mb-0 text-sm">Trainer:*</h6>
+              </label> <input class="mb-4" type="text" readonly  name="name" [(ngModel)]=" allocationItem.name" >
+              </div>
+              <div class="row px-5 inpbox"> <label class="mb-1">
+                <h6 class="mb-0 text-sm">Email:*</h6>
+                </label> <input class="mb-4" readonly  type="email" name="email" [(ngModel)]=" allocationItem.email" >
+              </div>
+               <div class="row px-5 inpbox"> <label class="mb-1">
+                   <h6 class="mb-0 text-sm">Start date:*</h6>
+                 </label> <input class="mb-4" type="date" name="startdate" [(ngModel)]=" allocationItem.startdate" >
+               </div>
+               <div class="row px-5 inpbox"> <label class="mb-1">
+                   <h6 class="mb-0 text-sm">End Date:*</h6>
+                 </label> <input class="mb-4" type="date" name="enddate"  [(ngModel)]="allocationItem.enddate" >
+               </div>
+             
+               <div class="row px-5 inpbox"> <label class="mb-1">
+                   <h6 class="mb-0 text-sm">Time:*</h6>
+                 </label> <input type="time" name="time"   [(ngModel)]="allocationItem.time">
+               </div>
+              </div>
+              <div class="col-md-6">
+               <br>
+             
+             
+               <div class="row px-5 inpbox"> <label class="mb-1">
+                   <h6 class="mb-0 text-sm">Course Name:*</h6>
+                 </label> <input class="mb-4" type="text" name="course" [(ngModel)]="allocationItem.course" >
+               </div>
+                <br>
+                <div class="row px-5 inpbox"> <label class="mb-1">
+                  <h6 class="mb-0 text-sm">Course ID:*</h6>
+                </label> <input class="mb-4" type="text" name="courseid" [(ngModel)]="allocationItem.courseid" >
+              </div>
+               <br>
+               <div class="row px-5 inpbox"> <label class="mb-1">
+                  <h6 class="mb-0 text-sm">Batch ID:*</h6>
+                </label> <input class="mb-4" type="text" name="batchid" [(ngModel)]="allocationItem.batchid" >
+              </div>
+               <br>
+               <div class="row px-5 inpbox"> <label class="mb-1">
+                  <h6 class="mb-0 text-sm">Meeting Link:*</h6>
+                </label> <input class="mb-4" type="text" name="meetinglink" [(ngModel)]="allocationItem.meetinglink" >
+              </div>
+               <br>
+              
+               <!-- <div class="btn-group"> -->
+  
+                <!-- <div class="row mb-3 px-3">
+                
+                    <button type="submit" value="Submit" class="btn btn-success text-center ">Allocate</button> </div>
+                <div class="row mb-3 px-3">
+                  <a routerLink="/">
+                   
+                  </a>
+                   </div> -->
+                   
+              <!-- </div> -->
+
+            </div>
+            <div class="row " >
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <button type="submit" value="Submit" class="btn btn-success text-center btn-block">Allocate</button> 
+              </div>
+
+              
+
+            </div>
+            </div>
+            </div>
+             </form>
+           
+            
+             <!-- End of Enroll form -->
+           
+         </div>
+       </div>
+ 
+ 
+ 
+ 
+     </div>
+   </div>
+   <!--page content ends-->
+ </div>
+ 
+ <!-- <script src="js/jquery.min.js"></script>
+ <script src="js/popper.js"></script>
+ <script src="js/bootstrap.min.js"></script>
+ <script src="js/main.js"></script>
+ <script>
+   var stepper2Node = document.querySelector('#stepper2')
+   var stepper2 = new Stepper(document.querySelector('#stepper2'), {
+     linear: false,
+     animation: true
+   })
+ 
+   stepper2Node.addEventListener('show.bs-stepper', function (event) {
+     console.warn('show.bs-stepper', event)
+   })
+   stepper2Node.addEventListener('shown.bs-stepper', function (event) {
+     console.warn('shown.bs-stepper', event)
+   })
+ 
+ </script>
+ <script src="node_modules/bs-stepper/dist/js/bs-stepper.js"></script>
+ 
+  -->

@@ -1,6 +1,6 @@
 <div class="wrapper d-flex align-items-stretch">
  
-    <nav *ngIf='showImage' id="sidebar">
+    <nav  id="sidebar">
         <div class="custom-menu">
          
          
@@ -44,7 +44,7 @@
       <br>
       <div class='card'>
         <div class='card-header'>
-          <h3 class="mt-4 ml-5 mb-4" style="font-weight: bold;">Application-list</h3>
+          <h3 class="mt-4 ml-5 mb-4" style="font-weight: bold;">Allocated-list</h3>
         </div>
   
         <div class='card-body'>
@@ -54,32 +54,32 @@
               <thead>
                 <tr>
                   
-                  <th>Assign</th>
+                 
                   <th>Name</th>
                   <th>Email</th>
-                  <th>Phone</th>
-                  <th>Address</th>
-                  <th>Qualification</th>
-                  <th>Skillset</th>
-                  <th>Current Company</th>
-                  <th>Current Designation</th>
-                  <th>Applied Course</th>
+                  <th>Start date</th>
+                  <th>End date</th>
+                  <th>Time</th>
+                  <th>Course</th>
+                  <th>Courseid</th>
+                  <th>batchid</th>
+                  <th>meetinglink</th>
                   
                 </tr>
   
               </thead>
               <tbody>
-                <tr *ngFor='let list of applicationlist '>
-                  <td><button (click)="singlelist(list)" >Approve</button></td>
-                  <td>{{ list.name}}</td>
+                <tr *ngFor='let list of allocatedlist '>
+                 
+                  <td>{{ list.name }}</td>
                   <td>{{ list.email }}</td>
-                  <td>{{ list.phone }}</td>
-                  <td>{{ list.address }}</td>
-                  <td>{{ list.qualification }}</td>
-                  <td>{{ list.skillset }}</td>
-                  <td>{{ list.current }}</td>
-                  <td>{{ list.designation }}</td>
-                  <td>{{ list.appliedcourse }}</td>
+                  <td>{{ list.startdate }}</td>
+                  <td>{{ list.enddate }}</td>
+                  <td>{{ list.time }}</td>
+                  <td>{{ list.course }}</td>
+                  <td>{{ list.courseid }}</td>
+                  <td>{{ list.batchid}}</td>
+                  <td>{{ list.meetinglink}}</td>
                 
                 </tr>
               </tbody>
@@ -92,3 +92,4 @@
     <!--page content ends-->
   </div>
   
+

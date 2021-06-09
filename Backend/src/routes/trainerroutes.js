@@ -1,11 +1,11 @@
 const express=require('express');
 const trainerRouter =express.Router();
-const cors = require('cors');
+
 var nodemailer=require('nodemailer');
 
 const Applicationlist = require('../models/Applicationlist');
-const  Approvedlist=require('../models/Trainerdata');
-
+const  Trainerdata=require('../models/Trainerdata');
+const Allocationdata=require('../models/Allocationdata')
 trainerRouter.post('/insert', function (req, res) {
    
     console.log(req.body);
@@ -25,15 +25,13 @@ trainerRouter.post('/insert', function (req, res) {
     var applicationlist =new Applicationlist(applicationlist);
     applicationlist.save();
   });
-  trainerRouter.get('/Applicationlist', function (req, res) {
+  trainerRouter.get('/applicationlist', function (req, res) {
     res.header("Access-Control-Allow-Origin", "*")
     res.header("Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTION");
   Applicationlist.find()
       .then(function (applicationlists) {
-        res.send(applicationlists);
-  
-      });
- 
+        res.send(applicationlists);  
+      }); 
   });
 trainerRouter.get('/:id',function (req,res){
     const id= req.params.id;
@@ -44,14 +42,7 @@ trainerRouter.get('/:id',function (req,res){
     })
   });
  
-  // trainerRouter.get('/approvedlist/:id',function (req,res){
-  //   const id= req.params.id;
-  //   console.log(id)
-  //   TrainerData.findOne({_id:id})
-  //   .then(function(trainer){
-  //      res.send(trainer);
-  //   })
-  // });
+  
   trainerRouter.post('/approvedlist',async function (req, res) {
    
     console.log(req.body);
@@ -69,10 +60,10 @@ trainerRouter.get('/:id',function (req,res){
     //   imageUrl: req.body.applicationlist.imageUrl,
         typemp:req.body.trainer.typemp
     }
-    var approvedlist =new  Approvedlist(approvedlist);
+    var approvedlist =new Trainerdata(approvedlist);
     approvedlist.save();
-    const traineremail= await Applicationlist.findOne({email:approvedlist.email})
-    console.log(traineremail);
+    const traineremail=await Applicationlist.findOne({email:approvedlist.email})
+    
     var transport=nodemailer.createTransport(
       {
         service:'gmail',
@@ -88,7 +79,7 @@ trainerRouter.get('/:id',function (req,res){
       from:'mittup2020@gmail.com',
       to:approvedlist.email,
       subject:'You are Approved',
-      text:`Hi ${approvedlist.name}.You are approved as ${approvedlist.typemp}and your id is ${approvedlist._id}`
+      text:`Congratulations ${approvedlist.name}.You are approved as ${approvedlist.typemp} and your id is ${approvedlist._id}.`
     }
     transport.sendMail(mailOptions,function(error,info){
       if(error){
@@ -106,21 +97,82 @@ trainerRouter.get('/:id',function (req,res){
   });
   
   // Getting approvedlist
-  trainerRouter.get('/approvedlist',function (req, res) {
-    // res.header("Access-Control-Allow-Origin", "*")
-    // res.header("Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTION");
-    console.log("approvedlist");
-    // TrainerData.find()
-    //   .then(function(approvedlists) {
-    //     res.send(approvedlists);
-    //     console.log(approvedlists);
-    //   });
-    Approvedlist.find()
-    .then(function(approvedlist){
-     
-        res.send(approvedlist);
-        
-    });
-  
+  trainerRouter.get('/', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTION");
+    Trainerdata.find()
+      .then(function(approvedlist) {
+        res.send(approvedlist);  
+      }); 
   });
-  module.exports= trainerRouter;
+   trainerRouter.get('/approve/:id',function (req,res){
+    const id= req.params.id;
+    // console.log(id)
+    Trainerdata.findOne({_id:id})
+    .then(function(trainer){
+       res.send(trainer);
+    })
+  });
+  
+  trainerRouter.post('/allocatedlist',function (req, res) {
+   
+    console.log(req.body);
+   
+    var allocatedlist = {
+      name: req.body.allocate.name,
+      email: req.body.allocate.email,
+      startdate: req.body.allocate.startdate,
+      enddate: req.body.allocate.enddate,
+      time:req.body.allocate.time,
+      course: req.body.allocate.course,
+      courseid: req.body.allocate.courseid,     
+      batchid: req.body.allocate.batchid,
+      meetinglink: req.body.allocate.meetinglink      
+    }
+    var allocatedlist =  new Allocationdata(allocatedlist);
+    allocatedlist.save();
+    var transport=nodemailer.createTransport(
+      {
+        service:'gmail',
+        auth:{
+          user:'mittup2020@gmail.com',
+          pass:'mittupoocha@1'
+        }
+      }
+    )
+    
+    var mailOptions={
+      
+      from:'mittup2020@gmail.com',
+      to: allocatedlist .email,
+      subject:'Course Assignment',
+      text:`Hi ${allocatedlist.name}.You are assigned the course ${allocatedlist.course}.The details are
+      Start Date:${allocatedlist.startdate},
+      End Date: ${allocatedlist.enddate},
+      Time:${allocatedlist.time},
+      Course: ${allocatedlist.course},
+      Course Id: ${allocatedlist.courseid},     
+      Batch Id: ${allocatedlist.batchid},
+      Meeting Link: ${allocatedlist.meetinglink}
+      `
+    }
+    transport.sendMail(mailOptions,function(error,info){
+      if(error){
+        console.log(error)
+      }
+      else{
+        console.log("email sent"+info.response)
+      }
+    })
+    
+  });
+//   trainerRouter.get('/allocatedlist',function(req,res){
+//     res.header("Access-Control-Allow-Origin","*")
+//     res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
+//      Allocationdata.find()
+//     .then(function(all){
+//        res.send(all);
+//       })     
+// });
+  
+  module.exports=trainerRouter;

@@ -30,7 +30,22 @@ export class ApprovalService {
     return this.http.get("http://localhost:3000/trainer/"+id);
   }
   getApprovedlist(){
-    return this.http.get("http://localhost:3000/trainer/approvedlist");
+    return this.http.get("http://localhost:3000/trainer");
    
+  }
+  getTrainer(id:any){
+    console.log(id)
+    return this.http.get("http://localhost:3000/trainer/approve/"+id);
+  }
+  
+  newAllocation(item){
+    console.log(item);
+    return this.http.post("http://localhost:3000/trainer/allocatedlist",{"allocate":item})
+    .subscribe((data)=>{
+      console.log(data);
+    })
+  }
+  getAllocatedlist(){
+    return this.http.get("http://localhost:3000/allocatedlist");   
   }
 }
